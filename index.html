@@ -11,13 +11,24 @@
   <!-- HEADER -->
   <header>
     <img src="images/logo.png" alt="Gemix Productions Logo" class="full-logo">
-    <nav>
+
+    <!-- Hamburger icon -->
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="navbar">
       <a href="#services">Services</a>
       <a href="#catalog">Catalog</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
 
   <!-- HERO -->
   <section class="hero">
@@ -26,7 +37,7 @@
     <a href="#contact" class="btn">Work With Us</a>
   </section>
 
-  <!-- FEATURES -->
+  <!-- SERVICES -->
   <section id="services" class="features">
     <h2>Our Services</h2>
     <div class="grid">
@@ -101,6 +112,44 @@
   <footer>
     © 2025 Gemix Productions LLC. All Rights Reserved.
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu() {
+      navbar.classList.add('active');
+      menuToggle.classList.add('open');
+      overlay.classList.add('active');
+      document.body.classList.add('no-scroll'); // lock scroll
+    }
+
+    function closeMenu() {
+      navbar.classList.remove('active');
+      menuToggle.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.classList.remove('no-scroll'); // unlock scroll
+    }
+
+    menuToggle.addEventListener('click', () => {
+      if (navbar.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Close menu after clicking a link
+    const navLinks = navbar.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close if clicking outside (overlay)
+    overlay.addEventListener('click', closeMenu);
+  </script>
 
 </body>
 </html>
