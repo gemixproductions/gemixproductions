@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemix Productions LLC</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      background: #000;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #0af;
+    }
+    header img {
+      height: 60px;
+    }
+    nav a {
+      color: #0af;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: #111;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: #0af;
+    }
+    .hero p {
+      max-width: 700px;
+      margin: 20px auto;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #0af;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #0af;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: #111;
+      padding: 20px;
+      border: 1px solid #0af;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .card img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+    }
+    .contact-info {
+      text-align: center;
+    }
+    .contact-info a {
+      color: #0af;
+      display: inline-block;
+      margin: 5px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      border-top: 2px solid #0af;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img src="images/logo.png" alt="Gemix Productions Logo">
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#catalog">Catalog</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Gemix Productions LLC</h1>
+    <p>With over 15 years of experience and a passion for music, Gemix Productions helps artists unlock their full potential. From recording to mixing and mastering, we deliver crystal-clear sound, custom beats, and creative consulting — guiding you from the first take to the final master with care, creativity, and technical expertise.</p>
+    <a href="#contact" class="btn">Work With Us</a>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="services" class="features">
+    <h2>Our Services</h2>
+    <div class="grid">
+      <div class="card">🎙️ Recording<br><small>Professional studio sessions</small></div>
+      <div class="card">🎚️ Mixing<br><small>Clean, balanced mixes</small></div>
+      <div class="card">🎛️ Mastering<br><small>Loud, clear, competitive masters</small></div>
+      <div class="card">✍️ Custom Songwriting<br><small>Original music tailored to you</small></div>
+      <div class="card">🎵 Beats<br><small>Custom + premade instrumentals</small></div>
+      <div class="card">💡 Consulting<br><small>Guidance for artists, producers & engineers</small></div>
+      <div class="card">📱 Social Media Content<br><small>Content creation & strategies</small></div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section id="catalog" class="catalog">
+    <h2>Featured Services</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="images/recording.jpg" alt="Recording Service">
+        <h3>Recording</h3>
+        <p>Custom rates</p>
+      </div>
+      <div class="card">
+        <img src="images/mixing.jpg" alt="Mixing Service">
+        <h3>Mixing</h3>
+        <p>Custom rates</p>
+      </div>
+      <div class="card">
+        <img src="images/mastering.jpg" alt="Mastering Service">
+        <h3>Mastering</h3>
+        <p>Custom rates</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <strong>How long is the turnaround time?</strong><br>
+      Most mixes/masters are delivered within 3–5 business days.
+    </div>
+    <div class="faq-item">
+      <strong>Do you offer revisions?</strong><br>
+      Yes! Every package includes at least one free round of revisions.
+    </div>
+    <div class="faq-item">
+      <strong>Can I bring my own beats or instrumentals?</strong><br>
+      Absolutely, we’ll help you build on your existing ideas.
+    </div>
+    <div class="faq-item">
+      <strong>Do you work with all genres?</strong><br>
+      Yes, our experience covers hip-hop, R&B, pop, rock, and more.
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <h2>Get In Touch</h2>
+    <div class="contact-info">
+      📧 <a href="mailto:gemixproductionsllc@gmail.com">gemixproductionsllc@gmail.com</a><br>
+      📞 <a href="tel:7325279536">732-527-9536</a><br>
+      📍 Dunellen, NJ<br><br>
+      <a href="https://instagram.com/7dayweekends" target="_blank">Instagram @7dayweekends</a> | 
+      <a href="https://instagram.com/gemixproductions" target="_blank">Instagram @gemixproductions</a>
+      <br><br>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.7704145070073!2d-74.4745!3d40.5898" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Gemix Productions LLC. All Rights Reserved.
+  </footer>
+
+</body>
+</html>
