@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gemix Productions LLC</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Wavesurfer.js -->
+  <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
 
@@ -12,28 +14,27 @@
   <header>
     <img src="images/logo.png" alt="Gemix Productions Logo" class="full-logo">
 
-    <!-- Hamburger icon -->
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
     <nav id="navbar">
       <a href="#services">Services</a>
       <a href="#catalog">Catalog</a>
+      <a href="#music">Music</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- Overlay -->
+  <!-- Hamburger icon -->
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
   <div id="overlay"></div>
 
   <!-- HERO -->
   <section class="hero">
     <h1>Gemix Productions LLC</h1>
-    <p>With over 15 years of experience and a passion for music, Gemix Productions helps artists unlock their full potential. From recording to mixing and mastering, we deliver crystal-clear sound, custom beats, and creative consulting — guiding you from the first take to the final master with care, creativity, and technical expertise.</p>
+    <p>With over 15 years of experience and a passion for music, Gemix Productions helps artists unlock their full potential. From recording to mixing and mastering, we deliver crystal-clear sound, custom beats, and creative consulting.</p>
     <a href="#contact" class="btn">Work With Us</a>
   </section>
 
@@ -73,6 +74,32 @@
     </div>
   </section>
 
+  <!-- MUSIC SHOWCASE -->
+  <section id="music" class="music">
+    <h2>Music Showcase</h2>
+    <p class="music-intro">Listen to some of our recent productions and get a taste of the Gemix sound.</p>
+    <div class="music-grid">
+      <div class="track">
+        <h3>Track Title 1</h3>
+        <button class="play-btn" data-id="wave1">▶️</button>
+        <div id="wave1" class="waveform"></div>
+        <span class="timer">0:00 / 0:00</span>
+      </div>
+      <div class="track">
+        <h3>Track Title 2</h3>
+        <button class="play-btn" data-id="wave2">▶️</button>
+        <div id="wave2" class="waveform"></div>
+        <span class="timer">0:00 / 0:00</span>
+      </div>
+      <div class="track">
+        <h3>Track Title 3</h3>
+        <button class="play-btn" data-id="wave3">▶️</button>
+        <div id="wave3" class="waveform"></div>
+        <span class="timer">0:00 / 0:00</span>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section id="faq" class="faq">
     <h2>Frequently Asked Questions</h2>
@@ -103,8 +130,6 @@
       📍 Dunellen, NJ<br><br>
       <a href="https://instagram.com/7dayweekends" target="_blank">Instagram @7dayweekends</a> | 
       <a href="https://instagram.com/gemixproductions" target="_blank">Instagram @gemixproductions</a>
-      <br><br>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.7704145070073!2d-74.4745!3d40.5898" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </section>
 
@@ -115,41 +140,80 @@
 
   <!-- Scripts -->
   <script>
+    // MENU TOGGLE
     const menuToggle = document.getElementById('menu-toggle');
     const navbar = document.getElementById('navbar');
     const overlay = document.getElementById('overlay');
-
     function openMenu() {
       navbar.classList.add('active');
       menuToggle.classList.add('open');
       overlay.classList.add('active');
-      document.body.classList.add('no-scroll'); // lock scroll
+      document.body.classList.add('no-scroll');
     }
-
     function closeMenu() {
       navbar.classList.remove('active');
       menuToggle.classList.remove('open');
       overlay.classList.remove('active');
-      document.body.classList.remove('no-scroll'); // unlock scroll
+      document.body.classList.remove('no-scroll');
     }
-
     menuToggle.addEventListener('click', () => {
-      if (navbar.classList.contains('active')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+      navbar.classList.contains('active') ? closeMenu() : openMenu();
     });
-
-    // Close menu after clicking a link
-    const navLinks = navbar.querySelectorAll('a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-
-    // Close if clicking outside (overlay)
     overlay.addEventListener('click', closeMenu);
-  </script>
 
+    // WAVESURFER AUDIO PLAYERS
+    const tracks = [
+      { id: 'wave1', file: 'music/track1.mp3' },
+      { id: 'wave2', file: 'music/track2.mp3' },
+      { id: 'wave3', file: 'music/track3.mp3' }
+    ];
+    let currentWave = null;
+    tracks.forEach(track => {
+      const wavesurfer = WaveSurfer.create({
+        container: `#${track.id}`,
+        waveColor: '#444',
+        progressColor: '#0048ff',
+        cursorColor: '#fff',
+        barWidth: 2,
+        height: 80,
+        responsive: true
+      });
+      wavesurfer.load(track.file);
+
+      const btn = document.querySelector(`.play-btn[data-id="${track.id}"]`);
+      const timer = btn.parentElement.querySelector('.timer');
+
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60) || 0;
+        const s = Math.floor(seconds % 60) || 0;
+        return `${m}:${s < 10 ? '0' : ''}${s}`;
+      }
+
+      wavesurfer.on('ready', () => {
+        timer.innerText = `0:00 / ${formatTime(wavesurfer.getDuration())}`;
+      });
+
+      wavesurfer.on('audioprocess', () => {
+        if (wavesurfer.isPlaying()) {
+          timer.innerText = `${formatTime(wavesurfer.getCurrentTime())} / ${formatTime(wavesurfer.getDuration())}`;
+        }
+      });
+
+      wavesurfer.on('finish', () => {
+        btn.innerHTML = '▶️';
+        timer.innerText = `0:00 / ${formatTime(wavesurfer.getDuration())}`;
+      });
+
+      btn.addEventListener('click', () => {
+        if (currentWave && currentWave !== wavesurfer) {
+          currentWave.pause();
+          document.querySelectorAll('.play-btn').forEach(b => b.innerHTML = '▶️');
+        }
+        wavesurfer.playPause();
+        btn.innerHTML = wavesurfer.isPlaying() ? '⏸️' : '▶️';
+        currentWave = wavesurfer;
+      });
+    });
+  </script>
 </body>
 </html>
